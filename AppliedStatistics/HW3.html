@@ -3,7 +3,7 @@
 <head><meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>CH2</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>HW3</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 
 
 
@@ -14579,53 +14579,68 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h1 id="%ED%86%B5%EA%B3%84%ED%95%99%EC%8B%A4%ED%97%98-Chapter-2-Python-%EA%B3%BC%EC%A0%9C-%EB%B0%8F-%EB%8B%B5%EC%95%88">&#53685;&#44228;&#54617;&#49892;&#54744; Chapter 2 Python &#44284;&#51228; &#48143; &#45813;&#50504;<a class="anchor-link" href="#%ED%86%B5%EA%B3%84%ED%95%99%EC%8B%A4%ED%97%98-Chapter-2-Python-%EA%B3%BC%EC%A0%9C-%EB%B0%8F-%EB%8B%B5%EC%95%88">&#182;</a></h1>
+<h2 id="Solution-code-for-7.54-with-Python">Solution code for 7.54 with Python<a class="anchor-link" href="#Solution-code-for-7.54-with-Python">&#182;</a></h2>
 </div>
 </div>
 </div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%EB%AC%B8%EC%A0%9C-1">&#47928;&#51228; 1<a class="anchor-link" href="#%EB%AC%B8%EC%A0%9C-1">&#182;</a></h2><p><code>pandas</code> 패키지을 이용하여 <code>cars93.csv</code> 파일을 DataFrame으로 읽어들인 후,</p>
-<ol>
-<li>차량의 <code>Type</code>이 <code>Midsize</code>인 데이터의 개수를 구하시오.</li>
-<li>휠베이스(<code>Wheelbase</code>)의 평균을 소수점 셋째자리까지 구하시오(Hint : <code>round</code> 함수를 이용). </li>
-<li><code>Origin</code>이 <code>USA</code>인 차량의 가격(<code>Price</code>)와 <code>non-USA</code>인 차량의 가격(<code>Price</code>)의 평균을 구하고 비교하시오. </li>
-</ol>
-
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[32]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;cars93.csv&#39;</span><span class="p">,</span> <span class="n">index_col</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Read in the data</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;data.csv&#39;</span><span class="p">)</span>
 
-<span class="c1"># Q1</span>
-<span class="n">midsize</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Type</span> <span class="o">==</span> <span class="s1">&#39;Midsize&#39;</span><span class="p">,:]</span>
-<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">midsize</span><span class="p">))</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;X1&#39;</span><span class="p">,</span> <span class="s1">&#39;X2&#39;</span><span class="p">,</span> <span class="s1">&#39;X3&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span><span class="p">,</span> <span class="n">df</span><span class="p">[[</span><span class="s1">&#39;y1&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">values</span> <span class="c1"># separate the data into X and y</span>
 
-<span class="c1"># Q2</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">Wheelbase</span><span class="p">)</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="c1"># add a constant column to X for the intercept term</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">X</span><span class="p">)),</span> <span class="n">X</span><span class="p">))</span>
+</pre></div>
 
-<span class="c1"># Q3</span>
-<span class="n">usa</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Origin</span><span class="o">==</span><span class="s1">&#39;USA&#39;</span><span class="p">,</span> <span class="p">:</span> <span class="p">]</span>
-<span class="n">non_usa</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">Origin</span><span class="o">==</span><span class="s1">&#39;non-USA&#39;</span><span class="p">,</span> <span class="p">:</span> <span class="p">]</span>
+     </div>
+</div>
+</div>
+</div>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">usa</span><span class="o">.</span><span class="n">Price</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">non_usa</span><span class="o">.</span><span class="n">Price</span><span class="p">))</span>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
+<h4 id="(a)-Find-$%5Chat%5Cbeta$-and-$s%5E2$">(a) Find $\hat\beta$ and $s^2$<a class="anchor-link" href="#(a)-Find-$%5Chat%5Cbeta$-and-$s%5E2$">&#182;</a></h4><ul>
+<li>$\beta = (332.111\;-1.546\;-1.425\;-2.237)^T$</li>
+<li>$s^2 = 5.345$</li>
+</ul>
+
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[33]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># calculate the OLS estimator for beta</span>
+<span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+
+<span class="c1"># Mean squared error of y1</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">X</span> <span class="o">@</span> <span class="n">beta</span>
+<span class="n">y_mse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_hat</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="mi">4</span><span class="p">)</span> <span class="c1"># sum of squared residuals divided by degrees of freedom</span>
+
+<span class="c1"># print the estimated coefficients (beta values)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_mse</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14647,10 +14662,11 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>22
-103.946
-18.572916666666668
-20.50888888888889
+<pre>[[332.111]
+ [ -1.546]
+ [ -1.425]
+ [ -2.237]]
+5.345
 </pre>
 </div>
 </div>
@@ -14666,7 +14682,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%EB%AC%B8%EC%A0%9C-2">&#47928;&#51228; 2<a class="anchor-link" href="#%EB%AC%B8%EC%A0%9C-2">&#182;</a></h2><p><code>seaborn</code> 패키지의 <code>iris</code> 데이터프레임을 로드하자. <code>for</code>문을 이용해 각 종(<code>species</code>)별 <code>sepal_length</code>의 평균과 표준편차를 <code>round</code> 함수를 이용하여 소수점 셋째자리까지 텍스트로 출력해보시오.</p>
+<h4 id="(b)-Find-an-estimate-of-$cov(%5Chat%5Cbeta)$">(b) Find an estimate of $cov(\hat\beta)$<a class="anchor-link" href="#(b)-Find-an-estimate-of-$cov(%5Chat%5Cbeta)$">&#182;</a></h4><p>Used that
+$$
+\hat cov(\hat\beta) = \hat\sigma^2(\mathbf{X^TX})^{-1} = s^2(\mathbf{X^TX})^{-1}
+$$</p>
 
 </div>
 </div>
@@ -14676,19 +14695,16 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[41]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">seaborn</span> <span class="k">as</span> <span class="nn">sns</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate the inverse of X^T*X</span>
+<span class="n">XtX_inv</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X</span><span class="p">)</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">sns</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s1">&#39;iris&#39;</span><span class="p">)</span>
-<span class="n">species</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">species</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<span class="c1"># Calculate the estimate of covariance matrix of beta</span>
+<span class="n">cov_beta</span> <span class="o">=</span> <span class="n">y_mse</span> <span class="o">*</span> <span class="n">XtX_inv</span>
 
-<span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">species</span><span class="p">:</span>
-    <span class="n">mu</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;sepal_length&#39;</span><span class="p">])</span>
-    <span class="n">sd</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">data</span><span class="o">.</span><span class="n">species</span> <span class="o">==</span> <span class="n">s</span><span class="p">,</span> <span class="s1">&#39;sepal_length&#39;</span><span class="p">])</span>
-    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">s</span><span class="si">}</span><span class="s2"> : 평균 = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">mu</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">, 표준편차 = </span><span class="si">{</span><span class="nb">round</span><span class="p">(</span><span class="n">sd</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cov_beta</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14710,9 +14726,10 @@ body[data-format='mobile'] .jp-OutputArea-child .jp-OutputArea-output {
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>setosa : 평균 = 5.006, 표준편차 = 0.349
-versicolor : 평균 = 5.936, 표준편차 = 0.511
-virginica : 평균 = 6.588, 표준편차 = 0.629
+<pre>[[ 3.49426e+02 -1.81100e+00 -1.67000e+00 -1.09000e-01]
+ [-1.81100e+00  1.00000e-02  7.00000e-03 -2.00000e-03]
+ [-1.67000e+00  7.00000e-03  2.20000e-02 -9.00000e-03]
+ [-1.09000e-01 -2.00000e-03 -9.00000e-03  1.15000e-01]]
 </pre>
 </div>
 </div>
@@ -14728,12 +14745,13 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%EB%AC%B8%EC%A0%9C3">&#47928;&#51228;3<a class="anchor-link" href="#%EB%AC%B8%EC%A0%9C3">&#182;</a></h2><ol>
-<li><code>seed</code>를 10로 지정하고 1 이상 100 이하의 자연수에서 50개를 임의로 선택하여 5 × 10 크기의 행렬을 생성하시오. </li>
-<li>1에서 생성된 행렬에서 2번째 행부터 5번째 행까지 추출하여 저장하시오.(<strong>※ 인덱스 주의!!!</strong>) </li>
-<li>1에서 생성된 행렬의 7번째 열의 평균과 분산을 계산하시오.</li>
-</ol>
-
+<h4 id="(c)-Find-$R%5E2$-and-$R%5E2_a$">(c) Find $R^2$ and $R^2_a$<a class="anchor-link" href="#(c)-Find-$R%5E2$-and-$R%5E2_a$">&#182;</a></h4><p>Used that for $p$ covariates model(except constant term)
+$$
+R^2_a = 1-(1-R^2)\frac{n-1}{n-p-1}
+$$</p>
+$$
+R^2 = 0.955 \\ R^2_a =0.946
+$$
 </div>
 </div>
 </div>
@@ -14742,21 +14760,21 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[38]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Find the R^2 value</span>
+<span class="n">y_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">SST</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">SSR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_hat</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">SSR</span> <span class="o">/</span> <span class="n">SST</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
-<span class="n">mat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">101</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
-<span class="n">mat</span>
-
-<span class="n">mat_24</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span> <span class="p">:]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">mat_24</span><span class="p">)</span>
-
-<span class="n">mat_7</span> <span class="o">=</span> <span class="n">mat</span><span class="p">[:,</span><span class="mi">6</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">mat_7</span><span class="p">))</span> <span class="c1"># 평균</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">mat_7</span><span class="p">))</span> <span class="c1"># 분산</span>
+<span class="c1"># Find the adjusted R^2 value</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="n">adj_R2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">R2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adj_R2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14778,12 +14796,8 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[[41 37 17 12 55 89 63 34 73 79]
- [50 52 55 78 70 14 26 14 93 87]
- [31 31 90 13 66 32 58 37 28 19]
- [94 78 23 24 95 12 29 75 89 10]]
-41.2
-252.56000000000003
+<pre>0.955
+0.946
 </pre>
 </div>
 </div>
@@ -14799,11 +14813,7 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%EB%AC%B8%EC%A0%9C-4">&#47928;&#51228; 4<a class="anchor-link" href="#%EB%AC%B8%EC%A0%9C-4">&#182;</a></h2><ol>
-<li><code>seed</code>를 30으로 고정하고 1 이상 1000 이하의 자연수에서 100개의 자연수를 복원추출하여 1차원 <code>array</code>로 저장하자.</li>
-<li>1에서 저장한 <code>array</code>의 각 원소에 대해 5의 배수이면 1, 그렇지 않으면 0을 가지는 새로운 <code>array</code>를 만들고, 이 <code>array</code>의 평균과 표준편차를 구하시오.</li>
-</ol>
-
+<h4 id="(d)-In-order-to-find-the-maximum-yield-for-$y_1$,-a-second-order-model-is-of-interest.-Find-$%5Chat%5Cbeta$-and-$s%5E2$-for-the-model">(d) In order to find the maximum yield for $y_1$, a second-order model is of interest. Find $\hat\beta$ and $s^2$ for the model<a class="anchor-link" href="#(d)-In-order-to-find-the-maximum-yield-for-$y_1$,-a-second-order-model-is-of-interest.-Find-$%5Chat%5Cbeta$-and-$s%5E2$-for-the-model">&#182;</a></h4>
 </div>
 </div>
 </div>
@@ -14812,21 +14822,24 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[43]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span>
-<span class="n">arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1001</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([])</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">arr</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="k">3</span> == 0:
-        <span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arr2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">1</span><span class="p">]))</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">arr2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">arr2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mi">0</span><span class="p">]))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Second order polynomial model (X1^2, X2^2, X3^2, X1*X2, X1*X3, X2*X3)</span>
+<span class="n">X2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">column_stack</span><span class="p">((</span><span class="n">X</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">],</span> <span class="n">X</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span><span class="o">*</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]))</span> <span class="c1"># add the second order terms</span>
 
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">arr2</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">arr2</span><span class="p">))</span>
+<span class="c1"># Calculate the OLS estimator for beta</span>
+<span class="n">beta2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">inv</span><span class="p">(</span><span class="n">X2</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">X2</span><span class="p">)</span> <span class="o">@</span> <span class="n">X2</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span>
+
+<span class="c1"># Mean squared error of y1</span>
+<span class="n">y_hat2</span> <span class="o">=</span> <span class="n">X2</span> <span class="o">@</span> <span class="n">beta2</span>
+<span class="n">y_mse2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_hat2</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span> <span class="o">-</span> <span class="mi">10</span><span class="p">)</span>
+
+<span class="c1"># print the estimated coefficients (beta values)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">beta2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
+
+<span class="c1"># print the mean squared error</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">y_mse2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14848,8 +14861,17 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>0.33
-0.47021271782034985
+<pre>[[ 9.64929e+02]
+ [-7.44200e+00]
+ [-1.15080e+01]
+ [-2.14000e+00]
+ [ 1.20000e-02]
+ [ 3.30000e-02]
+ [-2.94000e-01]
+ [ 5.40000e-02]
+ [ 3.80000e-02]
+ [-1.02000e-01]]
+5.134
 </pre>
 </div>
 </div>
@@ -14865,13 +14887,11 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<h2 id="%EB%AC%B8%EC%A0%9C-5">&#47928;&#51228; 5<a class="anchor-link" href="#%EB%AC%B8%EC%A0%9C-5">&#182;</a></h2><p>다음의 지시에 따라 반복문(for), 조건문(if)을 이용하여 리스트 x와 x의 평균이 출력되는 코드를 작성하시오.</p>
-<ol>
-<li>빈 리스트 x를 생성하자. </li>
-<li>1부터 100까지 정수 중에서 10개를 랜덤하게 추출하여 a와 b에 저장한다. </li>
-<li>a와 b의 값들의 크기를 서로 비교하여 크기가 큰 값들을 리스트 x에 저장(x.append() 이용)하고 그렇지 않으면 리스트 x에 0을 저장한다. </li>
-<li>리스트 x에 저장된 값들을 출력하고 이 값들의 평균을 구하여 출력한다. </li>
-</ol>
+<h4 id="(e)-Find-the-$R%5E2$-and-$R%5E2_a$-for-the-second-order-model">(e) Find the $R^2$ and $R^2_a$ for the second-order model<a class="anchor-link" href="#(e)-Find-the-$R%5E2$-and-$R%5E2_a$-for-the-second-order-model">&#182;</a></h4><p>Result
+$$
+R^2 = 0.974 \\
+R^2_a = 0.948
+$$</p>
 
 </div>
 </div>
@@ -14881,26 +14901,21 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[45]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
- 
-<span class="n">x</span> <span class="o">=</span> <span class="p">[]</span>
- 
-<span class="n">a</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">b</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate the R^2 value</span>
+<span class="n">y_bar</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">SST</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">SSR</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">((</span><span class="n">y_hat2</span> <span class="o">-</span> <span class="n">y_bar</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">R2</span> <span class="o">=</span> <span class="n">SSR</span> <span class="o">/</span> <span class="n">SST</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">R2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">&lt;</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="k">elif</span> <span class="n">b</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
-        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+<span class="c1"># Find the adjusted R^2 value</span>
+<span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="n">p</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="n">adj_R2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">R2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">n</span> <span class="o">-</span> <span class="n">p</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">adj_R2</span><span class="o">.</span><span class="n">round</span><span class="p">(</span><span class="mi">3</span><span class="p">))</span>
 </pre></div>
 
      </div>
@@ -14922,14 +14937,30 @@ virginica : 평균 = 6.588, 표준편차 = 0.629
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[82, 82, 77, 75, 65, 77, 0, 68, 89, 54]
-66.9
+<pre>0.974
+0.948
 </pre>
 </div>
 </div>
 
 </div>
 
+</div>
+
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs  ">
+<div class="jp-Cell-inputWrapper">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[&nbsp;]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+     <div class="CodeMirror cm-s-jupyter">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+     </div>
+</div>
+</div>
 </div>
 
 </div>
